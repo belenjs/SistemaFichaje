@@ -1,3 +1,5 @@
+package model;
+
 public class Usuario {
 
     private String nombre, apellido, dni, correo, password, perfil;
@@ -17,7 +19,10 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "El usuario: "+nombre+" "+apellido+" con dni: "+dni+" y correo eléctronico: "+correo+" es: "+perfil;
+        return "Usuario: "+nombre+" "+apellido +
+                ", DNI: "+dni +
+                ", correo : "+correo +
+                ", perfil:  "+perfil;
     }
 
     public String getNombre() {
