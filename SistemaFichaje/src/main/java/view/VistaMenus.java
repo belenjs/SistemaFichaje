@@ -13,7 +13,7 @@ public class VistaMenus {
 
     }
 
-    public static void menuAdministrador(Scanner sc, GestionUsuarios gestionUsuarios, GestionTrabajadores gestionTrabajadores){
+    public static void menuAdministrador(Scanner sc, GestionUsuarios gestionUsuarios, GestionTrabajadores gestionTrabajadores, GestionFichajes gestionFichajes){
         int opcion;
         do {
             System.out.println("\n---MENÚ ADMINISTRADOR---");
@@ -90,7 +90,7 @@ public class VistaMenus {
                     }
                     break;
                 case 6:
-                    System.out.println("Opción 6 pendiente de implementar");
+                    gestionFichajes.verRegistrosFichaje();
                     break;
                 case 0:
                     System.out.println("Saliendo del menú administrador...");

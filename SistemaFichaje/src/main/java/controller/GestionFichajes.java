@@ -2,9 +2,7 @@ package controller;
 
 import model.Usuario;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -33,6 +31,28 @@ public class GestionFichajes {
         } catch (IOException e) {
             return false;
         }
+    }
 
+    public void verRegistrosFichaje(){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("horas.txt"));
+            String linea;
+            boolean hayRegistros = false;
+
+            while((linea = bufferedReader.readLine()) != null){
+                if(!linea.isBlank()){
+                    System.out.println(linea);
+                    hayRegistros = true;
+                }
+            }
+            bufferedReader.close();
+            if(!hayRegistros){
+                System.out.println("El registro de fichajes está vacío");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No existe el fichero.");;
+        } catch (IOException e) {
+            System.out.println("No se pudo leer el fichero.");;
+        }
     }
 }
