@@ -13,7 +13,7 @@ public class GestionUsuarios {
     }
 
     public boolean agregarUsuario(Usuario usuario){
-        if(buscarPorDni(usuario.getDni()) != null || buscarPorCorreo(usuario.getCorreo()) != null){
+        if(existeDni(usuario.getDni()) || existeCorreo(usuario.getCorreo())){
             return false;
         } else {
             listaUsuarios.add(usuario);

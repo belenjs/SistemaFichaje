@@ -50,9 +50,9 @@ public class GestionFichajes {
                 System.out.println("El registro de fichajes está vacío");
             }
         } catch (FileNotFoundException e) {
-            System.out.println("No existe el fichero.");;
+            System.out.println("No existe el fichero.");
         } catch (IOException e) {
-            System.out.println("No se pudo leer el fichero.");;
+            System.out.println("No se pudo leer el fichero.");
         }
     }
 }

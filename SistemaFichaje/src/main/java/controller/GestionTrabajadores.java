@@ -2,7 +2,6 @@ package controller;
 
 import model.Usuario;
 
-import java.util.List;
 
 public class GestionTrabajadores {
     private GestionUsuarios gestionUsuarios;
@@ -37,16 +36,16 @@ public class GestionTrabajadores {
             }
         }
         if(!hayTrabajadores){
-            System.out.println("No hay trabajadores registrados");
+            System.out.println("No hay trabajadores registrados.");
         }
     }
 
-    public void mostrartTrabajadorPorDni(String dni){
+    public void mostrarTrabajadorPorDni(String dni){
         Usuario usuario = gestionUsuarios.buscarPorDni(dni);
         if(usuario == null){
-            System.out.println("No existe ningún usuario con ese DNI");
+            System.out.println("No existe ningún usuario con ese DNI.");
         } else if(!usuario.getPerfil().equalsIgnoreCase("trabajador")){
-            System.out.println("El usuario encontrado no es un trabajador");
+            System.out.println("El usuario encontrado no es un trabajador.");
         } else {
             System.out.println(usuario);
         }

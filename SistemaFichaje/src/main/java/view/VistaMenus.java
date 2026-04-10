@@ -35,12 +35,20 @@ public class VistaMenus {
                 case 1:
                     System.out.print("Introduce el DNI: ");
                     String dniAlta = sc.nextLine();
+                    if(dniAlta.isBlank()){
+                        System.out.println("El DNI no puede estar vacío");
+                        break;
+                    }
                     if(gestionUsuarios.existeDni(dniAlta)){
                         System.out.println("Ya existe un usuario con ese DNI. No se puede agregar el usuario.");
                         break;
                     }
                     System.out.print("Introduce el correo: ");
                     String correoAlta = sc.nextLine();
+                    if(correoAlta.isBlank()){
+                        System.out.println("El correo no puede estar vacío");
+                        break;
+                    }
                     if(gestionUsuarios.existeCorreo(correoAlta)){
                         System.out.println("Ya existe un usuario con ese correo. No se puede agregar el usuario.");
                         break;
@@ -51,7 +59,10 @@ public class VistaMenus {
                     String apellidoAlta = sc.nextLine();
                     System.out.print("Introduce la contraseña: ");
                     String passwordAlta = sc.nextLine();
-                    boolean altaCorrecta = gestionTrabajadores.altaTrabajador(nombreAlta,apellidoAlta,dniAlta,correoAlta,passwordAlta);
+                    if(nombreAlta.isBlank() || apellidoAlta.isBlank() || passwordAlta.isBlank()) {
+                        System.out.println("Nombre, apellido y contraseña no pueden estar vacíos");
+                    }
+                    boolean altaCorrecta = gestionTrabajadores.altaTrabajador(nombreAlta, apellidoAlta, dniAlta, correoAlta, passwordAlta);
 
                     if(altaCorrecta){
                         System.out.println("Trabajador dado de alta de forma exitosa");
@@ -70,19 +81,19 @@ public class VistaMenus {
                     }
                     break;
                 case 3:
-                    System.out.print("Introduce el DNI del trabajador a buscar");
+                    System.out.print("Introduce el DNI del trabajador a buscar: ");
                     String dni = sc.nextLine();
-                    gestionTrabajadores.mostrartTrabajadorPorDni(dni);
+                    gestionTrabajadores.mostrarTrabajadorPorDni(dni);
                     break;
                 case 4:
                     gestionTrabajadores.mostrarTrabajadores();
                     break;
                 case 5:
-                    System.out.print("Introduce el DNI del trabajador");
+                    System.out.print("Introduce el DNI del trabajador: ");
                     String dniPassword = sc.nextLine();
-                    System.out.print("Introduce la nueva contraseña");
+                    System.out.print("Introduce la nueva contraseña: ");
                     String nuevaPassword = sc.nextLine();
-                    boolean passwordCambiada = gestionTrabajadores.cambiarPassword(dniPassword,nuevaPassword);
+                    boolean passwordCambiada = gestionTrabajadores.cambiarPassword(dniPassword, nuevaPassword);
                     if(passwordCambiada){
                         System.out.println("Contraseña cambiada correctamente");
                     } else {
