@@ -1,5 +1,6 @@
 package view;
 
+import controller.GestionTrabajadores;
 import controller.GestionUsuarios;
 import model.Usuario;
 
@@ -11,7 +12,7 @@ public class VistaMenus {
 
     }
 
-    public static void menuAdministrador(Scanner sc, GestionUsuarios gestionUsuarios, Usuario usuarioLogueado){
+    public static void menuAdministrador(Scanner sc, GestionUsuarios gestionUsuarios, GestionTrabajadores gestionTrabajadores){
         int opcion;
         do {
             System.out.println("\n---MENÚ ADMINISTRADOR---");
@@ -29,23 +30,63 @@ public class VistaMenus {
                 opcion = -1;
             }
 
-
-
             switch (opcion) {
                 case 1:
-                    System.out.println("Opción 1 pendiente de implementar");
+                    System.out.print("Introduce el DNI: ");
+                    String dniAlta = sc.nextLine();
+                    if(gestionUsuarios.existeDni(dniAlta)){
+                        System.out.println("Ya existe un usuario con ese DNI. No se puede agregar el usuario.");
+                        break;
+                    }
+                    System.out.print("Introduce el correo: ");
+                    String correoAlta = sc.nextLine();
+                    if(gestionUsuarios.existeCorreo(correoAlta)){
+                        System.out.println("Ya existe un usuario con ese correo. No se puede agregar el usuario.");
+                        break;
+                    }
+                    System.out.print("Introduce el nombre: ");
+                    String nombreAlta = sc.nextLine();
+                    System.out.print("Introduce el apellido: ");
+                    String apellidoAlta = sc.nextLine();
+                    System.out.print("Introduce la contraseña: ");
+                    String passwordAlta = sc.nextLine();
+                    boolean altaCorrecta = gestionTrabajadores.altaTrabajador(nombreAlta,apellidoAlta,dniAlta,correoAlta,passwordAlta);
+
+                    if(altaCorrecta){
+                        System.out.println("Trabajador dado de alta de forma exitosa");
+                    } else {
+                        System.out.println("No se ha podido dar de alta al trabajador por existencia de DNI o correo");
+                    }
                     break;
                 case 2:
-                    System.out.println("Opción 2 pendiente de implementar");
+                    System.out.print("Introduce el DNI del trabajador que quieres dar de baja: ");
+                    String dniBaja = sc.nextLine();
+                    boolean bajaCorrecta = gestionTrabajadores.bajaTrabajador(dniBaja);
+                    if(bajaCorrecta){
+                        System.out.println("Trabajador dado de baja correctamente");
+                    } else {
+                        System.out.println("No se ha podido dar de baja al trabajador.");
+                    }
                     break;
                 case 3:
-                    System.out.println("Opción 3 pendiente de implementar");
+                    System.out.print("Introduce el DNI del trabajador a buscar");
+                    String dni = sc.nextLine();
+                    gestionTrabajadores.mostrartTrabajadorPorDni(dni);
                     break;
                 case 4:
-                    System.out.println("Opción 4 pendiente de implementar");
+                    gestionTrabajadores.mostrarTrabajadores();
                     break;
                 case 5:
-                    System.out.println("Opción 5 pendiente de implementar");
+                    System.out.print("Introduce el DNI del trabajador");
+                    String dniPassword = sc.nextLine();
+                    System.out.print("Introduce la nueva contraseña");
+                    String nuevaPassword = sc.nextLine();
+                    boolean passwordCambiada = gestionTrabajadores.cambiarPassword(dniPassword,nuevaPassword);
+                    if(passwordCambiada){
+                        System.out.println("Contraseña cambiada correctamente");
+                    } else {
+                        System.out.println("No se ha podido cambiar la contraseña.");
+                    }
                     break;
                 case 6:
                     System.out.println("Opción 6 pendiente de implementar");

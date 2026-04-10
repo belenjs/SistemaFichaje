@@ -48,6 +48,14 @@ public class GestionUsuarios {
         return null;
     }
 
+    public boolean existeDni(String dni){
+        return buscarPorDni(dni) != null;
+    }
+
+    public boolean existeCorreo(String correo){
+        return buscarPorCorreo(correo) != null;
+    }
+
     public List<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
