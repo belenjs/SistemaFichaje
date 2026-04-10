@@ -1,5 +1,6 @@
 package view;
 
+import controller.GestionFichajes;
 import controller.GestionTrabajadores;
 import controller.GestionUsuarios;
 import model.Usuario;
@@ -101,7 +102,7 @@ public class VistaMenus {
 
     }
 
-    public static void menuTrabajador(Scanner sc, GestionUsuarios gestionUsuarios, Usuario usuarioLogueado){
+    public static void menuTrabajador(Scanner sc, Usuario usuarioLogueado, GestionFichajes gestionFichajes){
         int opcion;
         do {
             System.out.println("\n=== MENÚ TRABAJADOR ===");
@@ -117,7 +118,12 @@ public class VistaMenus {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Fichaje pendiente de implementar");
+                    boolean fichajeCorrecto = gestionFichajes.realizarFichaje(usuarioLogueado);
+                    if(fichajeCorrecto){
+                        System.out.println("Fichaje realizado correctamente");
+                    } else {
+                        System.out.println("No se pudo realizar el fichaje");
+                    }
                     break;
                 case 0:
                     System.out.println("Saliendo del menú trabajador...");
