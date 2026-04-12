@@ -53,26 +53,28 @@ public class Main {
             System.out.println("No se pudo crear el trabajador inicial.");
         }
 
-        System.out.println("\n ---- INICIO DE SESIÓN ---- ");
-        System.out.print("Introduce tu correo: ");
-        String correo = scanner.nextLine();
+        Usuario usuarioLogueado;
+        do {
+            System.out.println("\n ---- INICIO DE SESIÓN ---- ");
+            System.out.print("Introduce tu correo: ");
+            String correo = scanner.nextLine();
 
-        System.out.print("Introduce tu contraseña: ");
-        String password = scanner.nextLine();
+            System.out.print("Introduce tu contraseña: ");
+            String password = scanner.nextLine();
 
-        Usuario usuarioLogueado = gestionUsuarios.iniciarSesion(correo, password);
-
-        if (usuarioLogueado != null) {
-            System.out.println("\nLogin correcto.");
-            System.out.println("Bienvenido/a, " + usuarioLogueado.getNombre() + ".");
-
-            if (usuarioLogueado.getPerfil().equalsIgnoreCase("admin")) {
-                VistaMenus.menuAdministrador(scanner, gestionUsuarios, gestionTrabajadores, gestionFichajes);
-            } else if (usuarioLogueado.getPerfil().equalsIgnoreCase("trabajador")) {
-                VistaMenus.menuTrabajador(scanner, usuarioLogueado, gestionFichajes);
+            usuarioLogueado = gestionUsuarios.iniciarSesion(correo, password);
+            if (usuarioLogueado == null) {
+                System.out.println("\nCorreo o contraseña incorrectos. Inténtalo de nuevo.");
             }
-        } else {
-            System.out.println("\nCorreo o contraseña incorrectos.");
+        } while (usuarioLogueado == null);
+
+        System.out.println("\nLogin correcto.");
+        System.out.println("Bienvenido/a, " + usuarioLogueado.getNombre() + ".");
+
+        if (usuarioLogueado.getPerfil().equalsIgnoreCase("admin")) {
+            VistaMenus.menuAdministrador(scanner, gestionUsuarios, gestionTrabajadores, gestionFichajes);
+        } else if (usuarioLogueado.getPerfil().equalsIgnoreCase("trabajador")) {
+            VistaMenus.menuTrabajador(scanner, usuarioLogueado, gestionFichajes);
         }
 
         scanner.close();

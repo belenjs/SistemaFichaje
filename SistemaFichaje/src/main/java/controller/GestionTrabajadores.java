@@ -43,7 +43,7 @@ public class GestionTrabajadores {
     public void mostrarTrabajadorPorDni(String dni){
         Usuario usuario = gestionUsuarios.buscarPorDni(dni);
         if(usuario == null){
-            System.out.println("No existe ningún usuario con ese DNI.");
+            System.out.println("No existe ningún usuario perfil trabajador con ese DNI.");
         } else if(!usuario.getPerfil().equalsIgnoreCase("trabajador")){
             System.out.println("El usuario encontrado no es un trabajador.");
         } else {

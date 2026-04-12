@@ -55,12 +55,21 @@ public class VistaMenus {
                     }
                     System.out.print("Introduce el nombre: ");
                     String nombreAlta = sc.nextLine();
+                    if(nombreAlta.isBlank()) {
+                        System.out.println("El nombre no pueden estar vacío");
+                        break;
+                    }
                     System.out.print("Introduce el apellido: ");
                     String apellidoAlta = sc.nextLine();
+                    if(apellidoAlta.isBlank()) {
+                        System.out.println("El apellido no pueden estar vacío");
+                        break;
+                    }
                     System.out.print("Introduce la contraseña: ");
                     String passwordAlta = sc.nextLine();
-                    if(nombreAlta.isBlank() || apellidoAlta.isBlank() || passwordAlta.isBlank()) {
-                        System.out.println("Nombre, apellido y contraseña no pueden estar vacíos");
+                    if(passwordAlta.isBlank()) {
+                        System.out.println("La contraseña no pueden estar vacía");
+                        break;
                     }
                     boolean altaCorrecta = gestionTrabajadores.altaTrabajador(nombreAlta, apellidoAlta, dniAlta, correoAlta, passwordAlta);
 
@@ -116,10 +125,9 @@ public class VistaMenus {
     public static void menuTrabajador(Scanner sc, Usuario usuarioLogueado, GestionFichajes gestionFichajes){
         int opcion;
         do {
-            System.out.println("\n=== MENÚ TRABAJADOR ===");
+            System.out.println("\n--- MENÚ TRABAJADOR ---");
             System.out.println("1. Realizar fichaje");
             System.out.println("0. Salir");
-            System.out.print("Elige una opción: ");
 
             try {
                 opcion = Integer.parseInt(sc.nextLine());
